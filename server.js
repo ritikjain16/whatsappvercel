@@ -33,6 +33,10 @@ app.use(express.json());
 app.use("/chat", ChatRoutes);
 app.use("/user", UserRoutes);
 
+app.get("/", (req, res) => {
+  res.status(200).send("<h1>Ritik</h1>");
+});
+
 io.on("connection", (socket) => {
   // console.log("a user connected");
   socket.on("sm", (msg) => {
