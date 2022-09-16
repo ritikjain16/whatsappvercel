@@ -11,10 +11,12 @@ import { Server } from "socket.io";
 dotenv.config();
 const port = process.env.PORT || 5000;
 const app = express();
+app.use(cors());
+app.use(express.json());
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "*",
+    origin: process.env.FRONTEND,
     methods: ["GET", "POST"],
   },
 });
@@ -27,9 +29,6 @@ mongoose
   .catch((e) => {
     console.log(e);
   });
-
-app.use(cors());
-app.use(express.json());
 
 app.use("/chat", ChatRoutes);
 app.use("/user", UserRoutes);
