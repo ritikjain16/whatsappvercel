@@ -14,11 +14,11 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: process.env.FRONTEND,
+    origin: "*",
     methods: ["GET", "POST"],
   },
 });
-// 
+//
 mongoose
   .connect(process.env.MONGO_URL)
   .then(() => {
