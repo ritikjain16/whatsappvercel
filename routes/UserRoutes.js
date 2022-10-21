@@ -137,6 +137,7 @@ router.post("/create", mymiddleware, async (req, res) => {
   try {
     const finduser = await User.findOne({ uid: req.body.uid });
     if (finduser) {
+      res.status(200).send("");
     } else {
       const createuser = await User.create(req.body);
       res.status(200).send(createuser);
